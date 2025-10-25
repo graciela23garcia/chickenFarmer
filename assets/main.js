@@ -421,10 +421,12 @@ function shutdownCountdown(seconds = 5) {
   });
 }
 
+
+
 /* ===== tiny stick-figure maze animation =====
    Usage: await playMaze(levelNumber);
    Shows a simple maze and auto-animates a stick figure along waypoints.
-================================================ */
+================================================ 
 function playMaze(level = 1) {
   return new Promise((resolve) => {
     const overlay = document.getElementById("mazeOverlay");
@@ -544,7 +546,7 @@ function playMaze(level = 1) {
     loop(performance.now());
   });
 }
-
+*/
 
    /* ===== LEVEL ENGINE ===== */
    async function run() {
@@ -564,7 +566,7 @@ function playMaze(level = 1) {
    
      // Level 1 — Stopper riddle
      await doRiddle(RIDDLES[0], 30, 0);
-     await playMaze(1);
+     //await playMaze(1);
      await levelCompletePopup("LEVEL 1 COMPLETE!", "Press Enter to continue (or look away dramaticallyand walk away).");
 
    
@@ -580,25 +582,25 @@ function playMaze(level = 1) {
      await startChickenShooter({ targetScore: 20 });
      flash("✔ LEVEL 2 COMPLETE", "ok");
      showProgress(60); await renderMap(1);
-     await playMaze(2);
+     //await playMaze(2);
      await levelCompletePopup("LEVEL 2 COMPLETE!", "Press Enter to continue (Alt+F4 doesn’t work here 😜).");
 
    
      // Level 3 — Catan
      await doRiddle(RIDDLES[1], 80, 2);
-     await playMaze(3);
+     //await playMaze(3);
      await levelCompletePopup("LEVEL 3 COMPLETE!", "Press Enter to continue (only on your birthday are you ever better than me at catan).");
 
    
      // Level 4 — Captain Gray
      await doRiddle(RIDDLES[2], 90, 3);
-     await playMaze(4);
+     //await playMaze(4);
      await levelCompletePopup("LEVEL 4 COMPLETE!", "Press Enter to continue (this is almost over I promise).");
 
    
      // Level 5 — Blazer
      await doRiddle(RIDDLES[3], 100, 3, { final: true });
-     await playMaze(5);
+     //await playMaze(5);
      await levelCompletePopup("ALL LEVELS COMPLETE!", "Press Enter... if you dare...");
 
    
