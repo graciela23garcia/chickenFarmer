@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>for_starbucks_prince.sh</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+    <div id="app">
+      <div id="crt" aria-live="polite" aria-label="terminal">
+        <div id="out"></div>
+  
+        <!-- prompt (initially hidden; JS focuses #input when needed) -->
+        <div id="prompt" class="hidden">
+          <span class="user">StinkyWinky:~$</span>
+          <input id="input" type="text" autocomplete="off" placeholder="type here and press Enter" />
+        </div>
+      </div>
+    </div>
+  
+    <!-- blackout + photo overlay + game overlay -->
+    <div id="blackout" class="hidden" aria-hidden="true"></div>
+    <div id="photo-field" class="hidden" aria-hidden="true"></div>
+  
+    <div id="gameOverlay" class="hidden" aria-hidden="true">
+      <canvas id="gameCanvas" width="800" height="420"></canvas>
+      <div id="gameHud"></div>
+    </div>
+    <div id="mazeOverlay" class="hidden" aria-hidden="true">
+      <canvas id="mazeCanvas" width="800" height="420"></canvas>
+    </div>
+    
+  
+    <script src="assets/game.js"></script>
+    <script src="assets/main.js"></script>
+  </body>
+  
+</html>

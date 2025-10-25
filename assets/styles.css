@@ -1,0 +1,160 @@
+:root{
+    --bg:#000;
+    --fg:#c7f9cc;
+    --fg-dim:#8bd3a1;
+    --accent:#7df9ff;
+    --warn:#ffd166;
+    --ok:#80ffea;
+    --err:#ff6b6b;
+  }
+  html,body{height:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--fg);
+    font:16px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+    display:flex; align-items:center; justify-content:center; overflow:hidden;
+  }
+  #crt {
+    width: min(900px, 92vw);
+    height: min(560px, 86vh);
+    background: #000; /* solid black so text is inside */
+    border: 2px solid #0a2;
+    border-radius: 10px;
+    padding: 22px 18px;
+    box-shadow: 0 0 40px rgba(0,255,128,.08) inset, 0 0 60px rgba(0,255,128,.12);
+    position: relative;
+    overflow-y: auto;
+    text-shadow: 0 0 4px rgba(60,255,120,.35);
+  }
+
+
+  #crt:after{
+    content:""; position:absolute; inset:0;
+    background:repeating-linear-gradient(to bottom, rgba(255,255,255,.03), rgba(255,255,255,.03) 1px, transparent 1px, transparent 3px);
+    pointer-events:none; mix-blend-mode:soft-light;
+  }
+  #out{white-space:pre-wrap}
+  .line{display:block}
+  .dim{color:var(--fg-dim)}
+  .accent{color:var(--accent)}
+  .warn{color:var(--warn)}
+  .ok{color:var(--ok)}
+  .err{color:var(--err)}
+  #prompt{display:flex; gap:8px; align-items:center; margin-top:6px}
+  #pfx{color:var(--accent)}
+  #input{min-width:4ch; outline:none; border:none; background:transparent; color:var(--fg); font:inherit}
+  #input::placeholder{color:rgba(199,249,204,.35)}
+  #cursor{display:inline-block; width:9px; height:1.1em; background:var(--fg); margin-left:2px; vertical-align:bottom; animation:blink 1s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  
+  .hidden { display: none !important; }
+  #gameOverlay { display: flex; } 
+
+
+  /* photos + confetti finale */
+  #photo-field{position:fixed; inset:0; pointer-events:none; overflow:hidden}
+  .shot{
+    position:absolute; width:120px; height:120px; object-fit:cover;
+    border-radius:10px; box-shadow:0 10px 30px rgba(0,0,0,.6);
+    animation:float 6s ease-in-out infinite;
+  }
+  @keyframes float{0%,100%{transform:translateY(0)} 50%{transform:translateY(-16px)}}
+  .conf{
+    position:fixed; width:8px; height:8px; border-radius:50%;
+    opacity:.95; filter:blur(.3px); animation:fall linear forwards;
+  }
+  @keyframes fall{to{transform:translateY(120vh) rotate(540deg)}}
+  
+  /* blackout screen */
+  #blackout{
+    position:fixed; inset:0; background:#000; z-index:9999; opacity:1;
+  }
+  
+  /* mini-game overlay */
+  #gameOverlay{
+    position:fixed; inset:0; background:rgba(0,0,0,.94); display:flex;
+    align-items:center; justify-content:center; flex-direction:column; z-index:5000;
+    border:2px solid #0a2;
+  }
+  #gameCanvas{background:#000; border:1px solid #0a2}
+  #gameHud{color:var(--fg); margin-top:8px; font-size:14px}
+  
+  /* level complete popup */
+.popup-backdrop {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.65);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 9999;
+}
+.popup {
+  background: rgba(0,16,0,.9);
+  border: 1px solid #0a2;
+  border-radius: 12px;
+  padding: 18px 22px;
+  box-shadow: 0 0 40px rgba(0,255,128,.15);
+  max-width: 90vw;
+  color: #9f9; font-family: monospace; text-align: center;
+}
+.popup h2 { margin: 0 0 6px; color: #bfffbf; }
+.popup p  { margin: 6px 0; opacity: .9; }
+.popup .hint { font-size: .95rem; opacity: .75; }
+
+
+/* photo overlay container sits above the page */
+#photo-field {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+}
+
+/* each photo tile is a square and crops nicely */
+#photo-field .shot {
+  position: fixed;
+  width: 160px;              /* uniform tile size */
+  height: 160px;
+  object-fit: cover;         /* crop to fill */
+  border: 1px solid #0a2;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0,255,128,.15);
+}
+/* big countdown number for shutdown popup */
+.popup .count {
+  font-size: 2.25rem;
+  line-height: 1.1;
+  margin-top: 6px;
+  color: #bfffbf;
+}
+#photo-field .shot {
+  filter: grayscale(100%);
+}
+#blackout {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  opacity: 0;                 /* start transparent */
+  pointer-events: none;
+  transition: opacity 800ms ease;
+  z-index: 10000;
+}
+#blackout.show {
+  opacity: 1;                 /* fades to full black */
+  pointer-events: auto;
+}
+
+/* Maze overlay */
+#mazeOverlay {
+  position: fixed; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(0,0,0,.45);
+  z-index: 9990;
+}
+
+#mazeOverlay.hidden { display: none; }
+
+#mazeCanvas {
+  background: #000;               /* terminal black */
+  border: 1px solid #0a2;
+  border-radius: 10px;
+  box-shadow: 0 0 30px rgba(0,255,128,.15);
+}
+
