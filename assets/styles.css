@@ -140,21 +140,3 @@
   opacity: 1;                 /* fades to full black */
   pointer-events: auto;
 }
-
-/* Maze overlay */
-#mazeOverlay {
-  position: fixed; inset: 0;
-  display: flex; align-items: center; justify-content: center;
-  background: rgba(0,0,0,.45);
-  z-index: 9990;
-}
-
-#mazeOverlay.hidden { display: none; }
-
-#mazeCanvas {
-  background: #000;               /* terminal black */
-  border: 1px solid #0a2;
-  border-radius: 10px;
-  box-shadow: 0 0 30px rgba(0,255,128,.15);
-}
-
